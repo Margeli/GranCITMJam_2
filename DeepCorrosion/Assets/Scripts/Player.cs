@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public float accelerationXZ = 0.05f;
     public float accelerationY = 0.1f;
     public float rotate_sensitivity = 0.6f;
-
     public float health = 100.0f;
 
     public GameObject canvas;
@@ -109,8 +108,6 @@ public class Player : MonoBehaviour
     {
         attacking = false;
     }
-
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Barrels")// BARREL GRABBED

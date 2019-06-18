@@ -240,7 +240,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &5811877355470764749
 SphereCollider:
@@ -331,11 +331,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5663471863293969370}
     m_Modifications:
-    - target: {fileID: 7567397788697191838, guid: 5b358b7a96f463a44a3c341a37415705,
-        type: 3}
-      propertyPath: m_Name
-      value: ElectricStick
-      objectReference: {fileID: 0}
     - target: {fileID: 1679412934463533036, guid: 5b358b7a96f463a44a3c341a37415705,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -390,6 +385,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 25.573002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567397788697191838, guid: 5b358b7a96f463a44a3c341a37415705,
+        type: 3}
+      propertyPath: m_Name
+      value: ElectricStick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b358b7a96f463a44a3c341a37415705, type: 3}

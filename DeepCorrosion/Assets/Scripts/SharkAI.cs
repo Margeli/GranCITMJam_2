@@ -26,7 +26,6 @@ public class SharkAI : MonoBehaviour
         state = SharkState.RESTING;
         player = GameObject.FindGameObjectWithTag("Player");
         transform.GetChild(0).gameObject.SetActive(false);
-        GetComponent<SphereCollider>().radius = detection_distance;
     }
 
     void FixedUpdate()
@@ -53,7 +52,7 @@ public class SharkAI : MonoBehaviour
 
                 case SharkState.HUNTING:
 
-                    transform.position += direction * Time.fixedDeltaTime * (can_attack ? avg_speed : avg_speed * 0.5f);
+                    transform.position += direction * Time.fixedDeltaTime * (can_attack ? avg_speed : avg_speed * 0.1f);
 
                     break;
 
@@ -72,11 +71,14 @@ public class SharkAI : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (state == SharkState.RESTING)
-            return;
+        if (state == SharkState.RESTING && Vector3.Distance(player.transform.position, transform.position) < detection_distance)
+        {
+            state = SharkState.ROAMING;
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
         else
         {
-            switch(state)
+            switch (state)
             {
                 case SharkState.ROAMING:
 
@@ -95,12 +97,12 @@ public class SharkAI : MonoBehaviour
                     }
 
                     break;
-                    
+
                 case SharkState.HUNTING:
 
                     target = player.transform.position;
 
-                    if(Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance)
+                    if (Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance)
                     {
                         state = SharkState.ROAMING;
                         target = transform.position;
@@ -109,9 +111,9 @@ public class SharkAI : MonoBehaviour
 
                     RaycastHit[] hits = Physics.RaycastAll(transform.position, target - transform.position, Mathf.Min(Vector3.Distance(target, transform.position), hunting_distance));
 
-                   bool found = false;
-                   for(int i = 0; i < hits.Length; i++)
-                   {
+                    bool found = false;
+                    for (int i = 0; i < hits.Length; i++)
+                    {
                         if (hits[i].collider.gameObject != gameObject && hits[i].collider.gameObject.tag != "Player")
                         {
                             found = false;
@@ -120,7 +122,7 @@ public class SharkAI : MonoBehaviour
 
                         else if (hits[i].collider.gameObject.tag == "Player")
                             found = true;
-                   }
+                    }
 
                     if (!found)
                     {
@@ -145,19 +147,7 @@ public class SharkAI : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" && state == SharkState.HUNTING)
-        {
-            if (can_attack)
-            {
-               // attack player
-               can_attack = false;
-               Invoke("ResetAttack", attack_timer);
-            }
-        }
-    }
+    
 
 
     private void ResetAttack()
@@ -168,12 +158,21 @@ public class SharkAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && state == SharkState.RESTING)
+        if (other.gameObject.tag == "Player" && state == SharkState.HUNTING)
         {
-            state = SharkState.ROAMING;
-            transform.GetChild(0).gameObject.SetActive(true);
+            if (can_attack)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit))
+                {
+                    Player player_script = player.GetComponent<Player>();
+                    player_script.health -= 20.0f;
+                    player_script.speed = hit.normal.normalized * player_script.maxSpeed;
+                    can_attack = false;
+                    Invoke("ResetAttack", attack_timer);
+                }
+            }
         }
-        
     }
 
 
