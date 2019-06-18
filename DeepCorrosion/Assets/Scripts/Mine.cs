@@ -11,9 +11,12 @@ public class Mine : MonoBehaviour
 
     public float time_to_explode_after_detection = 3;
     public float light_frequency = 0.5f;
+    public float MaxDmg = 100.0f;
 
     private float elapsed_time = 0.0f;
     private GameObject light_go;
+    public float explosionRadius;
+    private GameObject player;
 
     
     // Start is called before the first frame update
@@ -21,6 +24,8 @@ public class Mine : MonoBehaviour
     {
         light_go = GameObject.Find("Mine Lights");
         light_go.SetActive(false);
+        explosionRadius = GetComponent<SphereCollider>().radius;
+        
     }
 
     // Update is called once per frame
@@ -40,6 +45,7 @@ public class Mine : MonoBehaviour
         {
             if (!triggered)
             {
+                player = other.gameObject;
                 StartCoroutine(Countdown());
             }
             triggered = true;
@@ -64,9 +70,19 @@ public class Mine : MonoBehaviour
     {
         GameObject firework = Instantiate(explosion, transform.position, Quaternion.identity);
         firework.GetComponent<ParticleSystem>().Play();
+
+        Vector3 dist = transform.position - player.transform.position;
+        if (dist.magnitude < explosionRadius)
+        {
+            float percent = dist.magnitude * 100 / explosionRadius;
+            player.GetComponent<Player>().health -= percent * MaxDmg;
+        }
+
         MeshRenderer mesh_object = GetComponentInChildren<MeshRenderer>();
         mesh_object.gameObject.SetActive(false);
         Destroy(firework, 5);
         Destroy(this.gameObject);
     }
+
+    
 }

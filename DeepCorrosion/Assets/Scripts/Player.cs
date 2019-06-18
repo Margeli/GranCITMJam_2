@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public float accelerationY = 0.1f;
     public float rotate_sensitivity = 0.6f;
 
+    public float health = 100.0f;
+
 
     public GameObject grabUI;
     public GameObject dropUI;
@@ -103,6 +105,11 @@ public class Player : MonoBehaviour
     public void EndAttack()
     {
         attacking = false;
+    }
+
+    public void RecieveDmg(float dmg)
+    {
+        health -= dmg;
     }
 
     private void OnTriggerStay(Collider other)
