@@ -425,6 +425,7 @@ MonoBehaviour:
   detection_distance: 40
   attack_timer: 4
   collision_detection_dist: 2
+  push_speed: 0.1
 --- !u!135 &4117921339071403452
 SphereCollider:
   m_ObjectHideFlags: 0

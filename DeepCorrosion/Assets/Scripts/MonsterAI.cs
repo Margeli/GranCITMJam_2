@@ -15,6 +15,7 @@ public class MonsterAI : MonoBehaviour
     public float attack_timer = 4.0f;
     public float collision_detection_dist = 4.0f;
     public float patrol_time = 60.0f;
+    public float push_speed = 1.0f;
 
     private GameObject player;
     private MonsterState state;
@@ -79,18 +80,23 @@ public class MonsterAI : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        switch(state)
+
+        switch (state)
         {
             case MonsterState.PATROLLING:
 
-                if(Vector3.Distance(target, transform.position) < 0.5f)
+                if (Vector3.Distance(target, transform.position) < 0.5f)
                 {
                     state = MonsterState.ROAMING;
                     origin = patrol_points[patrol_index];
                     target = transform.position;
                     timer = 0.0f;
                 }
-                
+                else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance)
+                {
+                    state = MonsterState.HUNTING;
+                    origin = transform.position;
+                }
 
                 break;
 
@@ -129,7 +135,7 @@ public class MonsterAI : MonoBehaviour
                 if (Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance)
                 {
                     state = MonsterState.ROAMING;
-                    target = transform.position;
+                    target = origin;
                     timer = 0.0f;
                     return;
                 }
@@ -161,20 +167,9 @@ public class MonsterAI : MonoBehaviour
             default:
                 break;
         }
+
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" && state == MonsterState.HUNTING)
-        {
-            if (can_attack)
-            {
-                // attack player
-                can_attack = false;
-                Invoke("ResetAttack", attack_timer);
-            }
-        }
-    }
 
    
 
@@ -186,13 +181,21 @@ public class MonsterAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && state == MonsterState.PATROLLING)
+        if (other.gameObject.tag == "Player" && state == MonsterState.HUNTING)
         {
-            state = MonsterState.ROAMING;
-            timer = 0.0f;
+            if (can_attack)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit))
+                {
+                    Player player_script = player.GetComponent<Player>();
+                    player_script.health -= 45.0f;
+                    player_script.speed = -hit.normal.normalized * push_speed;
+                    can_attack = false;
+                    Invoke("ResetAttack", attack_timer);
+                }
+            }
         }
-        
-
     }
 
 

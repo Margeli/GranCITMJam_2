@@ -12,12 +12,14 @@ public class SharkAI : MonoBehaviour
     public float detection_distance = 40.0f;
     public float attack_timer = 4.0f;
     public float collision_detection_dist = 2.0f;
+    public float push_speed = 0.1f;
 
     private GameObject player;
     private SharkState state;
     private Vector3 target;
     private Vector3 origin;
     private bool can_attack = true;
+    private Animator animator;
 
 
     void Start()
@@ -26,6 +28,7 @@ public class SharkAI : MonoBehaviour
         state = SharkState.RESTING;
         player = GameObject.FindGameObjectWithTag("Player");
         transform.GetChild(0).gameObject.SetActive(false);
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -52,7 +55,7 @@ public class SharkAI : MonoBehaviour
 
                 case SharkState.HUNTING:
 
-                    transform.position += direction * Time.fixedDeltaTime * (can_attack ? avg_speed : avg_speed * 0.1f);
+                    transform.position += direction * Time.fixedDeltaTime * (can_attack ? avg_speed : avg_speed * 0.2f);
 
                     break;
 
@@ -153,6 +156,7 @@ public class SharkAI : MonoBehaviour
     private void ResetAttack()
     {
         can_attack = true;
+        animator.SetBool("attacking", false);
     }
 
 
@@ -167,8 +171,9 @@ public class SharkAI : MonoBehaviour
                 {
                     Player player_script = player.GetComponent<Player>();
                     player_script.health -= 20.0f;
-                    player_script.speed = hit.normal.normalized * player_script.maxSpeed;
+                    player_script.speed = -hit.normal.normalized * push_speed;
                     can_attack = false;
+                    animator.SetBool("attacking", true);
                     Invoke("ResetAttack", attack_timer);
                 }
             }
