@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 222418709}
   m_Layer: 0
   m_Name: mine
-  m_TagString: Untagged
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 222418706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28.728, y: 52.364, z: -169.388}
-  m_LocalScale: {x: 0.002557698, y: 0.002557698, z: 0.002557698}
+  m_LocalScale: {x: 0.0055808965, y: 0.0055808965, z: 0.0055808965}
   m_Children:
   - {fileID: 435729082}
   - {fileID: 3188556195956785700}
@@ -261,7 +261,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 4.45
-  m_Range: 0.87
+  m_Range: 1.25
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
