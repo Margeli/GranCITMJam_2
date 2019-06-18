@@ -8,23 +8,38 @@ public class Player : MonoBehaviour
     public float accelerationXZ = 0.05f;
     public float maxSpeedY = 0.5f;
     public float accelerationY = 0.1f;    
-
     public float minSpeedLimit = 0.0025f;
+
+
+    public GameObject grabUI;
+    GameObject grabbedBarrelGO;
+    
+    BoxCollider grabCollider;
     [Header("Useful Variables ( Do not touch them) ")]
     //public float speed = 0.0f;
 
     public Vector3 speed = Vector3.zero;
+    public bool barrelGrabbed = false;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        grabCollider = GetComponent<BoxCollider>();
+        grabbedBarrelGO = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //-------------------------------------------------------------GRABBING
+        if(barrelGrabbed)
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+            }
+        }
+
         //-------------------------------------------------------------INPUT MOVEMENT
 
         //------------------------------------------- Z AXIS
@@ -134,5 +149,32 @@ public class Player : MonoBehaviour
         
         transform.position = new Vector3(speed.x + transform.position.x, speed.y + transform.position.y, speed.z + transform.position.z);
         //-----------------------------------------------------INPUT MOVEMENT END
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+       // Debug.Log("trigger");
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Barrels")// BARREL GRABBED
+        {
+            grabUI.SetActive(true);
+            if (Input.GetKey(KeyCode.E))
+            {
+                other.gameObject.SetActive(false);
+                barrelGrabbed = true;
+                grabUI.SetActive(false);
+                grabbedBarrelGO.SetActive( true);
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Barrels")
+        {
+            grabUI.SetActive(false);
+        }
     }
 }

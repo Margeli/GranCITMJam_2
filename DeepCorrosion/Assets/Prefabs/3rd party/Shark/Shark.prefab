@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1351777683048843131}
   - component: {fileID: 7036031690070407704}
+  - component: {fileID: 5436062307471405333}
   m_Layer: 0
   m_Name: Shark
   m_TagString: Untagged
@@ -25,12 +26,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3102163397623602823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.67061, y: -10.375393, z: 13.97442}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5159496865647162887}
-  - {fileID: 6322128321260304154}
-  - {fileID: 3459359843194736444}
+  - {fileID: 4236907378072138252}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,6 +50,19 @@ MonoBehaviour:
   roam_max_dist: 35
   hunting_distance: 20
   attack_timer: 3
+--- !u!135 &5436062307471405333
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102163397623602823}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5110172168936518207
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,10 +89,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5110172168936518207}
   m_LocalRotation: {x: -0.7071069, y: -0.00000022719777, z: -0.000000037537063, w: 0.70710665}
-  m_LocalPosition: {x: 0.0000001502037, y: 0.023360189, z: 0.07700987}
+  m_LocalPosition: {x: 0, y: 0.023360189, z: 0.07700987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1351777683048843131}
+  m_Father: {fileID: 4236907378072138252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4146741524055769078
@@ -153,11 +165,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7317146697811485295}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.0000000010548675, y: 0.02857045, z: -0.024171388}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.02857045, z: -0.024171388}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1351777683048843131}
+  m_Father: {fileID: 4236907378072138252}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8487849448791279702
@@ -205,6 +217,39 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &8768697864439561381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4236907378072138252}
+  m_Layer: 0
+  m_Name: Mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4236907378072138252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768697864439561381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_Children:
+  - {fileID: 5159496865647162887}
+  - {fileID: 6322128321260304154}
+  - {fileID: 3459359843194736444}
+  m_Father: {fileID: 1351777683048843131}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8847521450308363093
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,9 +277,9 @@ Transform:
   m_GameObject: {fileID: 8847521450308363093}
   m_LocalRotation: {x: -0.70710695, y: -0.0000004685546, z: 0.00000024794198, w: 0.70710665}
   m_LocalPosition: {x: -0.0005180597, y: 0.011720975, z: 0.0683577}
-  m_LocalScale: {x: 1, y: 1, z: 1.000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1351777683048843131}
+  m_Father: {fileID: 4236907378072138252}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6054896186754976798
