@@ -38,11 +38,11 @@ public class Player : MonoBehaviour
         grabCollider = GetComponent<BoxCollider>();
         grabbedBarrelGO = transform.GetChild(0).gameObject;
         
-        electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();
-        barrelsLeftUI.text = totalBarrels.ToString();
+        electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();        
         grabUI = canvas.transform.Find("GrabBarrelText").gameObject;
         dropUI = canvas.transform.Find("DropBarrelText").gameObject;
         barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.GetComponent<Text>();
+        barrelsLeftUI.text = totalBarrels.ToString();
     }
 
     // Update is called once per frame

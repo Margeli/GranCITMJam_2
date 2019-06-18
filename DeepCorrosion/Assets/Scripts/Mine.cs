@@ -74,7 +74,7 @@ public class Mine : MonoBehaviour
         Vector3 dist = transform.position - player.transform.position;
         if (dist.magnitude < explosionRadius)
         {
-            float percent = dist.magnitude * 100 / explosionRadius - GetComponent<SphereCollider>().radius; ;
+            float percent = dist.magnitude * 100 / (explosionRadius - GetComponent<SphereCollider>().radius);
             player.GetComponent<Player>().health -= percent * MaxDmg;
             Debug.Log(percent);
         }
