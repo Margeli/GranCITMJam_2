@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1351777683048843131}
   - component: {fileID: 7036031690070407704}
   - component: {fileID: 5436062307471405333}
-  - component: {fileID: 6287332835701707035}
+  - component: {fileID: 1765281323396397621}
   m_Layer: 0
   m_Name: Shark
   m_TagString: Untagged
@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avg_speed: 3
-  roam_min_dist: 15
-  roam_max_dist: 35
+  roaming_distance: 40
   hunting_distance: 20
-  attack_timer: 3
+  ignoring_distance: 60
+  detection_distance: 40
+  attack_timer: 4
 --- !u!135 &5436062307471405333
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -64,8 +65,8 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 40
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &6287332835701707035
-SphereCollider:
+--- !u!65 &1765281323396397621
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -75,7 +76,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.3, z: 1.2}
 --- !u!1 &5110172168936518207
 GameObject:

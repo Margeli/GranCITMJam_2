@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float maxSpeedXZ = 0.7f;
+    public float maxSpeed = 0.7f;
     public float accelerationXZ = 0.05f;
-    public float maxSpeedY = 0.5f;
-    public float accelerationY = 0.1f;    
-    public float minSpeedLimit = 0.0025f;
+    public float accelerationY = 0.1f;
+    public float rotate_sensitivity = 0.6f;
 
 
     public GameObject grabUI;
+    public GameObject dropUI;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
     
@@ -49,113 +49,38 @@ public class Player : MonoBehaviour
 
         //-------------------------------------------------------------INPUT MOVEMENT
 
-        //------------------------------------------- Z AXIS
-        if (Input.GetKey(KeyCode.W) && speed.z < maxSpeedXZ) //forward
-        {
-            speed.z += accelerationXZ * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.S) && speed.z < maxSpeedXZ)//backwards
-        {
-            speed.z -= accelerationXZ * Time.deltaTime;
-        }
-        else //deaccelerate if no key pressed
-        {
-            if (speed.z > 0)
-            {
-                if (speed.z < minSpeedLimit)
-                {
-                    speed.z = 0;
-                }
-                else
-                {
-                    speed.z -= accelerationXZ * Time.deltaTime;
-                }
-            }
-            else if (speed.z < 0)
-            {
-                if (speed.z > minSpeedLimit)
-                {
-                    speed.z = 0;
-                }
-                else
-                {
-                    speed.z += accelerationXZ * Time.deltaTime;
-                }
-            }            
-        }
+        Vector3 movement = Vector3.zero;
+        movement.x = Input.GetAxis("Horizontal") * accelerationXZ * Time.deltaTime;
+        movement.z = Input.GetAxis("Vertical") * accelerationXZ * Time.deltaTime;
 
-        //------------------------------------------- X AXIS
-        if (Input.GetKey(KeyCode.D) && speed.x < maxSpeedXZ) //right
-        {
-            speed.x += accelerationXZ * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.A) && speed.x < maxSpeedXZ)//left
-        {
-            speed.x -= accelerationXZ * Time.deltaTime;
-        }
-        else //deaccelerate if no key pressed
-        {
-            if (speed.x > 0)
-            {
-                if (speed.x < minSpeedLimit)
-                {
-                    speed.x = 0;
-                }
-                else
-                {
-                    speed.x -= accelerationXZ * Time.deltaTime;
-                }
-            }
-            else if (speed.x < 0)
-            {
-                if (speed.x > minSpeedLimit)
-                {
-                    speed.x = 0;
-                }
-                else
-                {
-                    speed.x += accelerationXZ * Time.deltaTime;
-                }
-            }
-        }
-        //-------------------------------------------Y AXIS
-        if (Input.GetKey(KeyCode.Space) && speed.y < maxSpeedY) //float
-        {
-            speed.y += accelerationY * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.LeftControl) && speed.y < maxSpeedY)//sink
-        {
-            speed.y -= accelerationY * Time.deltaTime;
-        }
-        else //no key pressed
-        {
-            if (speed.y > 0)
-            {
-                if (speed.y < minSpeedLimit)
-                {
-                    speed.y = 0;
-                }
-                else
-                {
-                    speed.y -= accelerationY * Time.deltaTime;
-                }
-            }
-            else if (speed.y < 0)
-            {
-                if (speed.y > minSpeedLimit)
-                {
-                    speed.y = 0;
-                }
-                else
-                {
-                    speed.y += accelerationY * Time.deltaTime;
-                }
-            }
-        }
+        if (Input.GetKey(KeyCode.Space))
+            movement.y = accelerationY * Time.deltaTime;
+        else if (Input.GetKey(KeyCode.LeftControl))
+            movement.y = -accelerationY * Time.deltaTime;
 
-        
-        transform.position = new Vector3(speed.x + transform.position.x, speed.y + transform.position.y, speed.z + transform.position.z);
+        movement = transform.rotation * movement;
+
+        speed += movement;
+
+        if (speed.magnitude > maxSpeed)
+            speed = speed.normalized * maxSpeed;
+
+        if (movement == Vector3.zero)
+            speed *= 0.95f;
+
+        transform.position += speed;
+
         //-----------------------------------------------------INPUT MOVEMENT END
+
+        // Camera rotation
+        Transform trans = transform;
+
+        Vector2 deltaMouse = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+        trans.Rotate(Vector3.up, deltaMouse.x * rotate_sensitivity);
+        trans.Rotate(Vector3.right, -deltaMouse.y * rotate_sensitivity);
+
+        transform.LookAt(transform.position + trans.forward);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -170,13 +95,23 @@ public class Player : MonoBehaviour
             if (!grabbedBarrelBool)
             {
                 grabUI.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E))//pick barrel
                 {
-                    Destroy(other);
+                    Destroy(other.gameObject);
                     grabbedBarrelBool = true;
                     grabUI.SetActive(false);
                     grabbedBarrelGO.SetActive(true);
                 }
+            }
+        }
+        if(grabbedBarrelBool && other.gameObject.tag == "Submarine")
+        {
+            dropUI.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))//drop barrel in the subamrine
+            {
+                grabbedBarrelGO.SetActive(false);
+                grabbedBarrelBool = false;
+                dropUI.SetActive(false);
             }
         }
     }
