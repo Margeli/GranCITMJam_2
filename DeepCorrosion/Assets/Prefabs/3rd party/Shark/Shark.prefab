@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1351777683048843131}
   - component: {fileID: 7036031690070407704}
   - component: {fileID: 5436062307471405333}
+  - component: {fileID: 6287332835701707035}
   m_Layer: 0
   m_Name: Shark
   m_TagString: Untagged
@@ -58,11 +59,24 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3102163397623602823}
   m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 40
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &6287332835701707035
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102163397623602823}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.3, z: 1.2}
 --- !u!1 &5110172168936518207
 GameObject:
   m_ObjectHideFlags: 0
