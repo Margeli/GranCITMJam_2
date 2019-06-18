@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     public float accelerationY = 0.1f;
     public float rotate_sensitivity = 0.6f;
 
-
     public GameObject grabUI;
     public GameObject dropUI;
     public Text barrelsLeftUI;
