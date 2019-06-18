@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -12,8 +13,10 @@ public class Player : MonoBehaviour
 
     public GameObject grabUI;
     public GameObject dropUI;
+    public Text barrelsLeftUI;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
+    public int totalBarrels = 2;
     
     BoxCollider grabCollider;
     [Header("Useful Variables ( Do not touch them) ")]
@@ -23,11 +26,13 @@ public class Player : MonoBehaviour
     public bool grabbedBarrelBool = false;
 
 
+
     // Start is called before the first frame update
     void Awake()
     {
         grabCollider = GetComponent<BoxCollider>();
         grabbedBarrelGO = transform.GetChild(0).gameObject;
+        barrelsLeftUI.text = totalBarrels.ToString();
     }
 
     // Update is called once per frame
@@ -112,6 +117,8 @@ public class Player : MonoBehaviour
                 grabbedBarrelGO.SetActive(false);
                 grabbedBarrelBool = false;
                 dropUI.SetActive(false);
+                totalBarrels--;
+                barrelsLeftUI.text = totalBarrels.ToString();
             }
         }
     }
