@@ -6,10 +6,11 @@ public class SharkAI : MonoBehaviour
 {
 
     public float avg_speed = 3.0f;
-    public float roam_min_dist = 15.0f;
-    public float roam_max_dist = 35.0f;
+    public float roaming_distance = 30.0f;
     public float hunting_distance = 20.0f;
-    public float attack_timer = 3.0f;
+    public float ignoring_distance = 60.0f;
+    public float detection_distance = 40.0f;
+    public float attack_timer = 4.0f;
 
     private GameObject player;
     private SharkState state;
@@ -23,6 +24,8 @@ public class SharkAI : MonoBehaviour
         target = origin = transform.position;
         state = SharkState.RESTING;
         player = GameObject.FindGameObjectWithTag("Player");
+        transform.GetChild(0).gameObject.SetActive(false);
+        GetComponent<SphereCollider>().radius = detection_distance;
     }
 
     void FixedUpdate()
@@ -55,7 +58,7 @@ public class SharkAI : MonoBehaviour
                     break;
             }
 
-            transform.LookAt(Vector3.Lerp(transform.position + transform.forward, transform.position + direction, 0.1f));
+            transform.LookAt(Vector3.Lerp(transform.position + transform.forward, transform.position + direction, 0.05f));
         }
     }
     
@@ -74,9 +77,17 @@ public class SharkAI : MonoBehaviour
                     if (Vector3.Distance(target, transform.position) < 1.0f)
                         target = getRoamingTarget();
 
-                    if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance)
+                    else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance)
                         state = SharkState.HUNTING;
-                    
+
+
+                    else if (Vector3.Distance(player.transform.position, transform.position) > ignoring_distance)
+                    {
+                        state = SharkState.RESTING;
+                        transform.position = origin;
+                        transform.GetChild(0).gameObject.SetActive(false);
+                    }
+
                     break;
                     
                 case SharkState.HUNTING:
@@ -92,12 +103,18 @@ public class SharkAI : MonoBehaviour
 
                     RaycastHit[] hits = Physics.RaycastAll(transform.position, target - transform.position, Mathf.Min(Vector3.Distance(target, transform.position), hunting_distance));
 
-                    bool found = false;
-                    if(hits.Length == 1)
-                    {
-                        if (hits[0].collider.gameObject.tag == "Player")
+                   bool found = false;
+                   for(int i = 0; i < hits.Length; i++)
+                   {
+                        if (hits[i].collider.gameObject != gameObject && hits[i].collider.gameObject.tag != "Player")
+                        {
+                            found = false;
+                            break;
+                        }
+
+                        else if (hits[i].collider.gameObject.tag == "Player")
                             found = true;
-                    }
+                   }
 
                     if (!found)
                     {
@@ -145,17 +162,10 @@ public class SharkAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player" && state == SharkState.RESTING)
-            state = SharkState.ROAMING;
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player" && state == SharkState.ROAMING)
+        if (other.gameObject.tag == "Player" && state == SharkState.RESTING)
         {
-            state = SharkState.RESTING;
-            transform.position = origin;
+            state = SharkState.ROAMING;
+            transform.GetChild(0).gameObject.SetActive(true);
         }
         
     }
@@ -168,7 +178,7 @@ public class SharkAI : MonoBehaviour
         
         while (target == transform.position && counter <= 5)
         {
-            target = origin + new Vector3(Random.Range(roam_min_dist, roam_max_dist), Random.Range(roam_min_dist * 0.2f, roam_max_dist * 0.2f), Random.Range(roam_min_dist, roam_max_dist));
+            target = origin + new Vector3(Random.Range(-roaming_distance, roaming_distance), Random.Range(-roaming_distance * 0.2f, roaming_distance * 0.2f), Random.Range(-roaming_distance, roaming_distance));
 
             Collider[] collisions = Physics.OverlapBox(target, Vector3.one);
 
