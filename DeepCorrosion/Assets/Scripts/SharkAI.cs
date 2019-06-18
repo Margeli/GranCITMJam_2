@@ -215,4 +215,8 @@ public class SharkAI : MonoBehaviour
         return direction;
     }
 
+    public void Flee() {
+        state = SharkState.FLEEING;
+    }
+
 }
