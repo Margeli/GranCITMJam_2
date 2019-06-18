@@ -391,6 +391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricStick
       objectReference: {fileID: 0}
+    - target: {fileID: 237538765181561054, guid: 5b358b7a96f463a44a3c341a37415705,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b358b7a96f463a44a3c341a37415705, type: 3}
 --- !u!4 &3056710133406345470 stripped
