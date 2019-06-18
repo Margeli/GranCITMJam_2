@@ -15,7 +15,7 @@ public class Mine : MonoBehaviour
 
     private float elapsed_time = 0.0f;
     private GameObject light_go;
-    public float explosionRadius;
+    public float explosionRadius = 100.0f;
     private GameObject player;
 
     
@@ -24,7 +24,7 @@ public class Mine : MonoBehaviour
     {
         light_go = GameObject.Find("Mine Lights");
         light_go.SetActive(false);
-        explosionRadius = GetComponent<SphereCollider>().radius;
+       
         
     }
 
@@ -74,8 +74,9 @@ public class Mine : MonoBehaviour
         Vector3 dist = transform.position - player.transform.position;
         if (dist.magnitude < explosionRadius)
         {
-            float percent = dist.magnitude * 100 / explosionRadius;
+            float percent = dist.magnitude * 100 / explosionRadius - GetComponent<SphereCollider>().radius; ;
             player.GetComponent<Player>().health -= percent * MaxDmg;
+            Debug.Log(percent);
         }
 
         MeshRenderer mesh_object = GetComponentInChildren<MeshRenderer>();

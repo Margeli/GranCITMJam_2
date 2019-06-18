@@ -12,10 +12,10 @@ public class Player : MonoBehaviour
 
     public float health = 100.0f;
 
-
-    public GameObject grabUI;
-    public GameObject dropUI;
-    public Text barrelsLeftUI;
+    public GameObject canvas;
+    GameObject grabUI;
+    GameObject dropUI;
+    Text barrelsLeftUI;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
     public int totalBarrels = 2;    
@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
         
         electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();
         barrelsLeftUI.text = totalBarrels.ToString();
+        grabUI = canvas.transform.Find("GrabBarrelText").gameObject;
+        dropUI = canvas.transform.Find("DropBarrelText").gameObject;
+        barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -107,10 +110,6 @@ public class Player : MonoBehaviour
         attacking = false;
     }
 
-    public void RecieveDmg(float dmg)
-    {
-        health -= dmg;
-    }
 
     private void OnTriggerStay(Collider other)
     {

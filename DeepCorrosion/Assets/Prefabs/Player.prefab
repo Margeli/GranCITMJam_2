@@ -206,12 +206,11 @@ MonoBehaviour:
   accelerationXZ: 0.05
   accelerationY: 0.1
   rotate_sensitivity: 0.6
-  grabUI: {fileID: 0}
-  dropUI: {fileID: 0}
-  barrelsLeftUI: {fileID: 0}
+  health: 100
+  canvas: {fileID: 1167259050756999836, guid: 794cebbbcb5d19c47bf9c9c9492dbe42, type: 3}
   grabbedBarrelInstantiate: {fileID: 3936294427383954559, guid: 9174e79056100da4884b2670e20bb99a,
     type: 3}
-  totalBarrels: 2
+  totalBarrels: 4
   speed: {x: 0, y: 0, z: 0}
   grabbedBarrelBool: 0
 --- !u!65 &5925971773150540285

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 222418706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 28.728, y: 52.364, z: -169.388}
-  m_LocalScale: {x: 0.0055808965, y: 0.0055808965, z: 0.0055808965}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 435729082}
   - {fileID: 3188556195956785700}
@@ -51,6 +51,8 @@ MonoBehaviour:
   triggered: 0
   time_to_explode_after_detection: 3
   light_frequency: 0.5
+  MaxDmg: 100
+  explosionRadius: 100
 --- !u!135 &222418709
 SphereCollider:
   m_ObjectHideFlags: 0
