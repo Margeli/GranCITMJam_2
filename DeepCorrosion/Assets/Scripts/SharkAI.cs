@@ -8,7 +8,7 @@ public class SharkAI : MonoBehaviour
     public float avg_speed = 3.0f;
     public float roaming_distance = 30.0f;
     public float hunting_distance = 20.0f;
-    public float ignoring_distance = 60.0f;
+    public float resting_distance = 60.0f;
     public float detection_distance = 40.0f;
     public float attack_timer = 4.0f;
     public float collision_detection_dist = 2.0f;
@@ -36,7 +36,10 @@ public class SharkAI : MonoBehaviour
             return;
         else
         {
-            Vector3 direction = (state == SharkState.ROAMING ? target - transform.position : player.transform.position - transform.position).normalized;
+            Vector3 direction =  (target - transform.position).normalized;
+
+            if (state == SharkState.FLEEING)
+                direction = -direction;
 
             direction = CollisionDetection(direction);
 
@@ -56,7 +59,7 @@ public class SharkAI : MonoBehaviour
 
                 case SharkState.FLEEING:
 
-                    transform.position += -direction * Time.fixedDeltaTime * avg_speed * 1.25f;
+                    transform.position += direction * Time.fixedDeltaTime * avg_speed * 1.25f;
 
                     break;
             }
@@ -84,7 +87,7 @@ public class SharkAI : MonoBehaviour
                         state = SharkState.HUNTING;
 
 
-                    else if (Vector3.Distance(player.transform.position, transform.position) > ignoring_distance)
+                    else if (Vector3.Distance(player.transform.position, transform.position) > resting_distance)
                     {
                         state = SharkState.RESTING;
                         transform.position = origin;
@@ -97,7 +100,7 @@ public class SharkAI : MonoBehaviour
 
                     target = player.transform.position;
 
-                    if(Vector3.Distance(target, transform.position) > hunting_distance)
+                    if(Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance)
                     {
                         state = SharkState.ROAMING;
                         target = transform.position;
