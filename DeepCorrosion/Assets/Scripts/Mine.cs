@@ -26,9 +26,12 @@ public class Mine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        elapsed_time += Time.deltaTime;
-        if (elapsed_time > time_to_explode_after_detection)
-            Explode();
+        if (triggered)
+        {
+            elapsed_time += Time.deltaTime;
+            if (elapsed_time > time_to_explode_after_detection)
+                Explode();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
