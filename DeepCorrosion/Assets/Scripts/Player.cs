@@ -9,11 +9,12 @@ public class Player : MonoBehaviour
     public float accelerationXZ = 0.05f;
     public float accelerationY = 0.1f;
     public float rotate_sensitivity = 0.6f;
+    public float health = 100.0f;
 
-
-    public GameObject grabUI;
-    public GameObject dropUI;
-    public Text barrelsLeftUI;
+    public GameObject canvas;
+    GameObject grabUI;
+    GameObject dropUI;
+    Text barrelsLeftUI;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
     public int totalBarrels = 2;    
@@ -37,7 +38,10 @@ public class Player : MonoBehaviour
         grabCollider = GetComponent<BoxCollider>();
         grabbedBarrelGO = transform.GetChild(0).gameObject;
         
-        electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();
+        electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();        
+        grabUI = canvas.transform.Find("GrabBarrelText").gameObject;
+        dropUI = canvas.transform.Find("DropBarrelText").gameObject;
+        barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.GetComponent<Text>();
         barrelsLeftUI.text = totalBarrels.ToString();
     }
 
@@ -104,7 +108,6 @@ public class Player : MonoBehaviour
     {
         attacking = false;
     }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Barrels")// BARREL GRABBED

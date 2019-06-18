@@ -206,12 +206,11 @@ MonoBehaviour:
   accelerationXZ: 0.05
   accelerationY: 0.1
   rotate_sensitivity: 0.6
-  grabUI: {fileID: 0}
-  dropUI: {fileID: 0}
-  barrelsLeftUI: {fileID: 0}
+  health: 100
+  canvas: {fileID: 1167259050756999836, guid: 794cebbbcb5d19c47bf9c9c9492dbe42, type: 3}
   grabbedBarrelInstantiate: {fileID: 3936294427383954559, guid: 9174e79056100da4884b2670e20bb99a,
     type: 3}
-  totalBarrels: 2
+  totalBarrels: 4
   speed: {x: 0, y: 0, z: 0}
   grabbedBarrelBool: 0
 --- !u!65 &5925971773150540285
@@ -241,7 +240,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &5811877355470764749
 SphereCollider:
@@ -332,11 +331,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5663471863293969370}
     m_Modifications:
-    - target: {fileID: 7567397788697191838, guid: 5b358b7a96f463a44a3c341a37415705,
-        type: 3}
-      propertyPath: m_Name
-      value: ElectricStick
-      objectReference: {fileID: 0}
     - target: {fileID: 1679412934463533036, guid: 5b358b7a96f463a44a3c341a37415705,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,6 +385,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 25.573002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567397788697191838, guid: 5b358b7a96f463a44a3c341a37415705,
+        type: 3}
+      propertyPath: m_Name
+      value: ElectricStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 237538765181561054, guid: 5b358b7a96f463a44a3c341a37415705,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b358b7a96f463a44a3c341a37415705, type: 3}
