@@ -188,7 +188,7 @@ public class SharkAI : MonoBehaviour
             Collider[] collisions = Physics.OverlapBox(target, Vector3.one);
 
             for(int i = 0; i < collisions.Length; i++)
-                if(!collisions[i].isTrigger)
+                if(!collisions[i].isTrigger && collisions[i].gameObject != gameObject)
                 {
                     target = transform.position;
                     break;
