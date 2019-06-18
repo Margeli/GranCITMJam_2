@@ -7,7 +7,6 @@ TagManager:
   - Barrels
   - Submarine
   - Mine
-  - Enemy
   layers:
   - Default
   - TransparentFX
