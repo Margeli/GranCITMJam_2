@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Barrels
   - Submarine
+  - PatrolPoint
   - Mine
   layers:
   - Default
