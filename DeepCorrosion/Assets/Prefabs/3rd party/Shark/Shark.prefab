@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1351777683048843131}
+  - component: {fileID: 7036031690070407704}
   m_Layer: 0
   m_Name: Shark
   m_TagString: Untagged
@@ -33,6 +34,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7036031690070407704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102163397623602823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026200fecb47b8c4b861bd84d19ff73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avg_speed: 3
+  roam_min_dist: 15
+  roam_max_dist: 35
+  hunting_distance: 20
+  attack_timer: 3
 --- !u!1 &5110172168936518207
 GameObject:
   m_ObjectHideFlags: 0
