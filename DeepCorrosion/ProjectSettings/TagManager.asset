@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Barrels
   - Submarine
+  - Mine
   layers:
   - Default
   - TransparentFX
