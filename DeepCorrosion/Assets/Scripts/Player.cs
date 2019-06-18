@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
 
     public GameObject grabUI;
+    public GameObject dropUI;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
     
@@ -170,13 +171,23 @@ public class Player : MonoBehaviour
             if (!grabbedBarrelBool)
             {
                 grabUI.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E))//pick barrel
                 {
-                    Destroy(other);
+                    Destroy(other.gameObject);
                     grabbedBarrelBool = true;
                     grabUI.SetActive(false);
                     grabbedBarrelGO.SetActive(true);
                 }
+            }
+        }
+        if(grabbedBarrelBool && other.gameObject.tag == "Submarine")
+        {
+            dropUI.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))//drop barrel in the subamrine
+            {
+                grabbedBarrelGO.SetActive(false);
+                grabbedBarrelBool = false;
+                dropUI.SetActive(false);
             }
         }
     }
