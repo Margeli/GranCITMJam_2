@@ -13,13 +13,14 @@ public class Player : MonoBehaviour
 
     public GameObject grabUI;
     GameObject grabbedBarrelGO;
+    public GameObject grabbedBarrelInstantiate;
     
     BoxCollider grabCollider;
     [Header("Useful Variables ( Do not touch them) ")]
     //public float speed = 0.0f;
 
     public Vector3 speed = Vector3.zero;
-    public bool barrelGrabbed = false;
+    public bool grabbedBarrelBool = false;
 
 
     // Start is called before the first frame update
@@ -33,10 +34,16 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         //-------------------------------------------------------------GRABBING
-        if(barrelGrabbed)
+        if(grabbedBarrelBool)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetMouseButtonDown(1))//Drop barrel
             {
+                //grabbedBarrelInstantiate.SetActive(true);
+                GameObject inst = Instantiate(grabbedBarrelInstantiate, transform.parent,true);
+                //grabbedBarrelInstantiate.SetActive(false);
+                inst.transform.position = transform.position + transform.forward * 1.25f ;  
+                grabbedBarrelGO.SetActive(false);
+                grabbedBarrelBool = false;
             }
         }
 
@@ -160,13 +167,16 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Barrels")// BARREL GRABBED
         {
-            grabUI.SetActive(true);
-            if (Input.GetKey(KeyCode.E))
+            if (!grabbedBarrelBool)
             {
-                other.gameObject.SetActive(false);
-                barrelGrabbed = true;
-                grabUI.SetActive(false);
-                grabbedBarrelGO.SetActive( true);
+                grabUI.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    other.gameObject.SetActive(false);
+                    grabbedBarrelBool = true;
+                    grabUI.SetActive(false);
+                    grabbedBarrelGO.SetActive(true);
+                }
             }
         }
     }
