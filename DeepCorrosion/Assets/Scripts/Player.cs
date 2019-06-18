@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public int totalBarrels = 2;    
     BoxCollider grabCollider;
 
-    GameObject electricStickGO;
+    ElectricStick electricStickScript;
     bool attacking = false;
 
 
@@ -36,7 +36,8 @@ public class Player : MonoBehaviour
     {
         grabCollider = GetComponent<BoxCollider>();
         grabbedBarrelGO = transform.GetChild(0).gameObject;
-        electricStickGO = transform.GetChild(1).gameObject;
+        
+        electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();
         barrelsLeftUI.text = totalBarrels.ToString();
     }
 
@@ -48,25 +49,15 @@ public class Player : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Attack();
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-
-                electricStickGO.transform.position = new Vector3(electricStickGO.transform.position.x, electricStickGO.transform.position.y, electricStickGO.transform.position.z - 0.5f);
-
-                attacking = false;
-            }
-
+                attacking = true;
+                electricStickScript.Attack();
+            }       
         }
         else
         {
             if (Input.GetMouseButtonDown(1))//Drop barrel
             {
-                //grabbedBarrelInstantiate.SetActive(true);
                 GameObject inst = Instantiate(grabbedBarrelInstantiate, transform.parent, true);
-                //grabbedBarrelInstantiate.SetActive(false);
                 inst.transform.position = transform.position + transform.forward * 1.25f;
                 grabbedBarrelGO.SetActive(false);
                 grabbedBarrelBool = false;
@@ -109,11 +100,9 @@ public class Player : MonoBehaviour
         transform.LookAt(transform.position + trans.forward);
     }
 
-    void Attack()
+    public void EndAttack()
     {
-        attacking = true;
-        electricStickGO.transform.position= new Vector3(electricStickGO.transform.position.x, electricStickGO.transform.position.y, electricStickGO.transform.position.z+0.5f);
-        Debug.Log("attack");
+        attacking = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -125,6 +114,7 @@ public class Player : MonoBehaviour
                 grabUI.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))//pick barrel
                 {
+                    electricStickScript.gameObject.SetActive(false);
                     Destroy(other.gameObject);
                     grabbedBarrelBool = true;
                     grabUI.SetActive(false);
@@ -137,6 +127,7 @@ public class Player : MonoBehaviour
             dropUI.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))//drop barrel in the subamrine
             {
+                electricStickScript.gameObject.SetActive(true);
                 grabbedBarrelGO.SetActive(false);
                 grabbedBarrelBool = false;
                 dropUI.SetActive(false);

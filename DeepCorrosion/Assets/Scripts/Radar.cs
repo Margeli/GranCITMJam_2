@@ -5,7 +5,8 @@ using UnityEngine;
 public class Radar : MonoBehaviour
 {
     GameObject player;
-    private float radar_frequency = 3.0f;
+    public float radar_radius = 5.0f;
+    public float radar_frequency = 3.0f;
     private float timer = 0.0f;
 
     void Start()
@@ -19,12 +20,20 @@ public class Radar : MonoBehaviour
         if (timer >= radar_frequency)
         {
             RadarSwipe();
+            timer = 0.0f;
         }
     }
 
     void RadarSwipe()
     {
         Transform playertrans = player.transform;
-        //Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(playertrans.position, radar_radius, -1, QueryTriggerInteraction.Ignore);
+        foreach (Collider col in hitColliders)
+        {
+            if (col.tag == "Enemy")
+            {
+                Debug.Log("enemy in range");
+            }
+        }
     }
 }
