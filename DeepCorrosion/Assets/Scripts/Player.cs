@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
                 grabUI.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    other.gameObject.SetActive(false);
+                    Destroy(other);
                     grabbedBarrelBool = true;
                     grabUI.SetActive(false);
                     grabbedBarrelGO.SetActive(true);
