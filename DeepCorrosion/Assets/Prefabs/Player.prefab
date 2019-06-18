@@ -126,7 +126,7 @@ Light:
   m_Color: {r: 1, g: 0.9448819, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 10
-  m_SpotAngle: 42.141
+  m_SpotAngle: 75.88834
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -160,6 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5663471863293969370}
+  - component: {fileID: 591844466}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -184,6 +185,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &591844466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663471863293969371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6634ca4f689032b4fa5f5c192cdd9128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeedXZ: 0.7
+  accelerationXZ: 0.05
+  maxSpeedY: 0.5
+  accelerationY: 0.1
+  minSpeedLimit: 0.0025
+  speed: {x: 0, y: 0, z: 0}
 --- !u!1 &6328177016890260183
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +247,7 @@ Light:
   m_Color: {r: 1, g: 0.9448819, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 10
-  m_SpotAngle: 42.141
+  m_SpotAngle: 65.82647
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
