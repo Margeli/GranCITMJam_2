@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1765281323396397621}
   m_Layer: 0
   m_Name: Shark
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   ignoring_distance: 60
   detection_distance: 40
   attack_timer: 4
+  collision_detection_dist: 2
 --- !u!135 &5436062307471405333
 SphereCollider:
   m_ObjectHideFlags: 0
