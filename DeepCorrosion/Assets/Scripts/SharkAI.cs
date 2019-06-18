@@ -11,6 +11,7 @@ public class SharkAI : MonoBehaviour
     public float ignoring_distance = 60.0f;
     public float detection_distance = 40.0f;
     public float attack_timer = 4.0f;
+    public float collision_detection_dist = 2.0f;
 
     private GameObject player;
     private SharkState state;
@@ -36,6 +37,8 @@ public class SharkAI : MonoBehaviour
         else
         {
             Vector3 direction = (state == SharkState.ROAMING ? target - transform.position : player.transform.position - transform.position).normalized;
+
+            direction = CollisionDetection(direction);
 
             switch (state)
             {
@@ -194,6 +197,19 @@ public class SharkAI : MonoBehaviour
         }
 
         return target;
+    }
+
+    private Vector3 CollisionDetection(Vector3 direction)
+    {
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, collision_detection_dist);
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].collider.gameObject != gameObject && hits[i].collider.gameObject.tag != "Player")
+                direction = (direction * hits[0].distance + hits[0].normal.normalized).normalized;
+        }
+
+        return direction;
     }
 
 }
