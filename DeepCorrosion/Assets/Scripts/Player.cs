@@ -16,9 +16,13 @@ public class Player : MonoBehaviour
     public Text barrelsLeftUI;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
-    public int totalBarrels = 2;
-    
+    public int totalBarrels = 2;    
     BoxCollider grabCollider;
+
+    GameObject electricStickGO;
+    bool attacking = false;
+
+
     [Header("Useful Variables ( Do not touch them) ")]
     //public float speed = 0.0f;
 
@@ -32,6 +36,7 @@ public class Player : MonoBehaviour
     {
         grabCollider = GetComponent<BoxCollider>();
         grabbedBarrelGO = transform.GetChild(0).gameObject;
+        electricStickGO = transform.GetChild(1).gameObject;
         barrelsLeftUI.text = totalBarrels.ToString();
     }
 
@@ -39,14 +44,30 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         //-------------------------------------------------------------GRABBING
-        if(grabbedBarrelBool)
+        if (!grabbedBarrelBool)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Attack();
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+
+                electricStickGO.transform.position = new Vector3(electricStickGO.transform.position.x, electricStickGO.transform.position.y, electricStickGO.transform.position.z - 0.5f);
+
+                attacking = false;
+            }
+
+        }
+        else
         {
             if (Input.GetMouseButtonDown(1))//Drop barrel
             {
                 //grabbedBarrelInstantiate.SetActive(true);
-                GameObject inst = Instantiate(grabbedBarrelInstantiate, transform.parent,true);
+                GameObject inst = Instantiate(grabbedBarrelInstantiate, transform.parent, true);
                 //grabbedBarrelInstantiate.SetActive(false);
-                inst.transform.position = transform.position + transform.forward * 1.25f ;  
+                inst.transform.position = transform.position + transform.forward * 1.25f;
                 grabbedBarrelGO.SetActive(false);
                 grabbedBarrelBool = false;
             }
@@ -88,9 +109,11 @@ public class Player : MonoBehaviour
         transform.LookAt(transform.position + trans.forward);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void Attack()
     {
-       // Debug.Log("trigger");
+        attacking = true;
+        electricStickGO.transform.position= new Vector3(electricStickGO.transform.position.x, electricStickGO.transform.position.y, electricStickGO.transform.position.z+0.5f);
+        Debug.Log("attack");
     }
 
     private void OnTriggerStay(Collider other)

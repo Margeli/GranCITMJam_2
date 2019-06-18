@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5663471863293969370}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5663471862296231419
 Camera:
@@ -111,7 +111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5663471863293969370}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -30.000002, z: 0}
 --- !u!108 &5663471863173109924
 Light:
@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 591844466}
   - component: {fileID: 5925971773150540285}
   - component: {fileID: 1944510163044894634}
+  - component: {fileID: 5811877355470764749}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -182,10 +183,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5862675851573726779}
+  - {fileID: 3056710133406345470}
   - {fileID: 5663471862296231418}
   - {fileID: 5663471863173109947}
   - {fileID: 458614016041282574}
-  - {fileID: 3056710133406345470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -201,15 +202,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6634ca4f689032b4fa5f5c192cdd9128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeedXZ: 0.7
+  maxSpeed: 0.7
   accelerationXZ: 0.05
-  maxSpeedY: 0.5
   accelerationY: 0.1
-  minSpeedLimit: 0.0025
+  rotate_sensitivity: 0.6
   grabUI: {fileID: 0}
   dropUI: {fileID: 0}
+  barrelsLeftUI: {fileID: 0}
   grabbedBarrelInstantiate: {fileID: 3936294427383954559, guid: 9174e79056100da4884b2670e20bb99a,
     type: 3}
+  totalBarrels: 2
   speed: {x: 0, y: 0, z: 0}
   grabbedBarrelBool: 0
 --- !u!65 &5925971773150540285
@@ -237,10 +239,23 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &5811877355470764749
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663471863293969371}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.16
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6328177016890260183
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +285,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5663471863293969370}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 30.000002, z: 0}
 --- !u!108 &5595792454601026230
 Light:
@@ -360,7 +375,7 @@ PrefabInstance:
     - target: {fileID: 1679412934463533036, guid: 5b358b7a96f463a44a3c341a37415705,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1679412934463533036, guid: 5b358b7a96f463a44a3c341a37415705,
         type: 3}
