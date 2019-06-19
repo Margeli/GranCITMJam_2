@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 198000010118446818}
   - component: {fileID: 199000011340400198}
   m_Layer: 0
-  m_Name: Particle jiggly bubble soapy
+  m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,8 +150,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 8
-      minScalar: 5
+      scalar: 0
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
