@@ -225,8 +225,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3, z: 1.25}
-  m_Center: {x: 0, y: 0, z: 0.6}
+  m_Size: {x: 1.5, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!54 &1944510163044894634
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.16
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.4}
 --- !u!1 &6328177016890260183
 GameObject:
   m_ObjectHideFlags: 0
