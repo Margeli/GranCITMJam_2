@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public float maxSpeed = 0.7f;
-    public float accelerationXZ = 0.05f;
-    public float accelerationY = 0.01f;
+    public float accelerationXZ = 0.3f;
     public float rotate_sensitivity = 0.6f;
     public float health = 100.0f;
 
