@@ -145,6 +145,14 @@ public class Player : MonoBehaviour
         attacking = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Linterna")
+            GameObject.Find("ElectricStick").SetActive(true);
+        else if (other.gameObject.name == "HeatShield")
+            has_heat_shield = true;
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Barrels")// BARREL GRABBED
