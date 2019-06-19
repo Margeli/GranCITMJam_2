@@ -72,6 +72,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (health < 0)
+        {
+            health = 0;
+        }
         if (regenerate)
         {
             Debug.Log("Regenerate");
@@ -101,6 +105,8 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(1))//Drop barrel
             {
                 GameObject inst = Instantiate(grabbedBarrelInstantiate, transform.parent, true);
+                inst.SetActive(true);
+                inst.GetComponent<Rigidbody>().useGravity = true;
                 inst.transform.position = transform.position + transform.forward * 1.25f;
                 grabbedBarrelGO.SetActive(false);
                 grabbedBarrelBool = false;

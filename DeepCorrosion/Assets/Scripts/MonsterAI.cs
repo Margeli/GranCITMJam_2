@@ -140,6 +140,9 @@ public class MonsterAI : MonoBehaviour
 
                 if (Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance ||  player_script.hidden)
                 {
+                    if (Vector3.Distance(transform.position, origin) > detection_distance)
+                        origin = transform.position;
+
                     state = MonsterState.ROAMING;
                     target = origin;
                     timer = 0.0f;

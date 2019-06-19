@@ -255,7 +255,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 366407062000109288, guid: 9174e79056100da4884b2670e20bb99a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9174e79056100da4884b2670e20bb99a, type: 3}
 --- !u!1 &2416839900432805082 stripped
 GameObject:
@@ -361,7 +362,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 366407062000109288, guid: 9174e79056100da4884b2670e20bb99a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9174e79056100da4884b2670e20bb99a, type: 3}
 --- !u!1 &3154556939973315396 stripped
 GameObject:
@@ -612,7 +614,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 366407062000109288, guid: 9174e79056100da4884b2670e20bb99a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9174e79056100da4884b2670e20bb99a, type: 3}
 --- !u!1 &1154697229802201604 stripped
 GameObject:
@@ -1093,7 +1096,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 366407062000109288, guid: 9174e79056100da4884b2670e20bb99a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9174e79056100da4884b2670e20bb99a, type: 3}
 --- !u!4 &3275332070074484577 stripped
 Transform:
