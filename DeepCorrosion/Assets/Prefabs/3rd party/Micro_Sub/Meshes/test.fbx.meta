@@ -1,17 +1,22 @@
 fileFormatVersion: 2
-guid: 3943420b751ee6f4c82699d9932f1a43
+guid: 967f15f0e1fd31945b90e33d8d5d1a05
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Group38869
-    400000: //RootNode
-    400002: Group38869
-    2100000: Group38869Mat
-    2300000: Group38869
-    3300000: Group38869
-    4300000: Group38869
-    2186277476908879412: ImportLogs
+    100000: Body
+    100002: Glass
+    100004: //RootNode
+    400000: Body
+    400002: Glass
+    400004: //RootNode
+    2100000: Micro_Sub_Body
+    2100002: Micro_Sub_Glass
+    2300000: Body
+    2300002: Glass
+    3300000: Body
+    3300002: Glass
+    4300000: Body
+    4300002: Glass
   externalObjects: {}
   materials:
     importMaterials: 1
