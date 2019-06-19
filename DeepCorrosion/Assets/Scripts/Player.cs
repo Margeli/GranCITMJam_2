@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public float maxSpeed = 0.7f;
     public float accelerationXZ = 0.05f;
-    public float accelerationY = 0.1f;
+    public float accelerationY = 0.01f;
     public float rotate_sensitivity = 0.6f;
     public float health = 100.0f;
 
@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     BoxCollider grabCollider;
 
     ElectricStick electricStickScript;
-    bool attacking = false;
 
 
     [Header("Useful Variables ( Do not touch them) ")]
@@ -83,6 +82,9 @@ public class Player : MonoBehaviour
 
         movement = transform.rotation * movement;
 
+        if (grabbedBarrelBool)
+            movement *= 0.3f;
+
         speed += movement;
 
         if (speed.magnitude > maxSpeed)
@@ -102,6 +104,12 @@ public class Player : MonoBehaviour
 
         trans.Rotate(Vector3.up, deltaMouse.x * rotate_sensitivity);
         trans.Rotate(Vector3.right, -deltaMouse.y * rotate_sensitivity);
+        
+
+        if (trans.rotation.eulerAngles.x < 180.0f && trans.rotation.eulerAngles.x > 20.0f)
+            trans.rotation = Quaternion.Euler(20.0f, trans.rotation.eulerAngles.y, 0);
+        else if (trans.rotation.eulerAngles.x > 180.0f && trans.rotation.eulerAngles.x < 340.0f)
+            trans.rotation = Quaternion.Euler(340.0f, trans.rotation.eulerAngles.y, 0);
 
         transform.LookAt(transform.position + trans.forward);
     }
