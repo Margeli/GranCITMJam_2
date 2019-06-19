@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
     ElectricStick electricStickScript;
 
+    public AudioClip grabBarrel;
 
     [Header("Useful Variables ( Do not touch them) ")]
     //public float speed = 0.0f;
@@ -129,6 +130,7 @@ public class Player : MonoBehaviour
                     grabbedBarrelBool = true;
                     grabUI.SetActive(false);
                     grabbedBarrelGO.SetActive(true);
+                    GetComponent<AudioSource>().PlayOneShot(grabBarrel);
                 }
             }
         }
