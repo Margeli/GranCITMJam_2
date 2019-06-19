@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     Text depthUI;
     Text barrelsLeftUI;
     Text healthUI;
+    GameObject red;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
     public int totalBarrels = 2;    
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
         depthUI.text = initialDepth.ToString();
         healthUI = canvas.transform.Find("HealthText").gameObject.transform.GetChild(0).GetComponent<Text>();
         healthUI.text = health.ToString();
+        red = canvas.transform.Find("red").gameObject;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -70,11 +72,12 @@ public class Player : MonoBehaviour
         if (regenerate)
         {
             Debug.Log("Regenerate");
-            if (health < 100)
+            if (health < 1000)
             {
+                red.SetActive(true);
                 health += regeneratePerSec * Time.fixedDeltaTime;
             }
-            if (health > 100)
+            if (health > 1000)
             {
                 health = 1000;
             }
@@ -137,7 +140,7 @@ public class Player : MonoBehaviour
 
         //------UI
         depthUI.text = (initialDepth - (int)transform.position.y).ToString() ;
-        healthUI.text = health.ToString();
+        healthUI.text =((int) health).ToString();
     }
 
     public void EndAttack()
@@ -151,6 +154,9 @@ public class Player : MonoBehaviour
             GameObject.Find("ElectricStick").SetActive(true);
         else if (other.gameObject.name == "HeatShield")
             has_heat_shield = true;
+        else if (other.gameObject.tag == "DeliverSpot")        
+            regenerate = true;
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -175,7 +181,6 @@ public class Player : MonoBehaviour
         if(grabbedBarrelBool && other.gameObject.tag == "DeliverSpot")
         {
             dropUI.SetActive(true);
-            regenerate = true;
             if (Input.GetKeyDown(KeyCode.E))//drop barrel in the subamrine
             {
                 electricStickScript.gameObject.SetActive(true);
@@ -195,13 +200,15 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Barrels")
         {
             grabUI.SetActive(false);
+            
         }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Barrels")
+        if (other.gameObject.tag == "DeliverSpot")
         {
             regenerate = false;
+            red.SetActive(false);
+
         }
+        
     }
+   
 }
