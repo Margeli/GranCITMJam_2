@@ -10,11 +10,14 @@ public class Player : MonoBehaviour
     public float accelerationY = 0.01f;
     public float rotate_sensitivity = 0.6f;
     public float health = 100.0f;
+    public int initialDepth = 1120;
 
     GameObject canvas;
     GameObject grabUI;
     GameObject dropUI;
+    Text depthUI;
     Text barrelsLeftUI;
+    Text healthUI;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
     public int totalBarrels = 2;    
@@ -46,6 +49,10 @@ public class Player : MonoBehaviour
         dropUI = canvas.transform.Find("DropBarrelText").gameObject;
         barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.transform.GetChild(0).GetComponent<Text>();
         barrelsLeftUI.text = totalBarrels.ToString();
+        depthUI = canvas.transform.Find("WaterDepthText").gameObject.transform.GetChild(0).GetComponent<Text>();
+        depthUI.text = initialDepth.ToString();
+        healthUI = canvas.transform.Find("HealthText").gameObject.transform.GetChild(0).GetComponent<Text>();
+        healthUI.text = health.ToString();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -116,6 +123,10 @@ public class Player : MonoBehaviour
             trans.rotation = Quaternion.Euler(340.0f, trans.rotation.eulerAngles.y, 0);
 
         transform.LookAt(transform.position + trans.forward);
+
+        //------UI
+        depthUI.text = (initialDepth - (int)transform.position.y).ToString() ;
+        healthUI.text = health.ToString();
     }
 
     public void EndAttack()
