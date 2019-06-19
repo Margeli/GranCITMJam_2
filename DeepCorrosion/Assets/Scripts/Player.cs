@@ -220,6 +220,7 @@ public class Player : MonoBehaviour
         {
             regenerate = false;
             red.SetActive(false);
+            dropUI.SetActive(false);
         }
     }
 
