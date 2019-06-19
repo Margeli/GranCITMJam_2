@@ -52,7 +52,7 @@ MonoBehaviour:
   time_to_explode_after_detection: 3
   light_frequency: 0.5
   MaxDmg: 100
-  explosionRadius: 100
+  explosionRadius: 8
 --- !u!135 &222418709
 SphereCollider:
   m_ObjectHideFlags: 0
