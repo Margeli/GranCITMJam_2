@@ -48,6 +48,7 @@ public class Mine : MonoBehaviour
             if (!triggered)
             {
                 light_frequency = 0.5f;
+                GetComponent<AudioSource>().Play();
                 StopAllCoroutines();
                 StartCoroutine(Countdown());
             }
