@@ -16,8 +16,10 @@ public class MonsterAI : MonoBehaviour
     public float collision_detection_dist = 4.0f;
     public float patrol_time = 60.0f;
     public float push_speed = 1.0f;
+    public AudioClip monsterScream;
 
     private GameObject player;
+    private Player player_script;
     private MonsterState state;
     private Vector3 target;
     private Vector3 origin;
@@ -33,7 +35,7 @@ public class MonsterAI : MonoBehaviour
         target = origin = transform.position;
         state = MonsterState.PATROLLING;
         player = GameObject.FindGameObjectWithTag("Player");
-        GetComponent<SphereCollider>().radius = detection_distance;
+        player_script = player.GetComponent<Player>();
 
         GameObject[] ptrl_objects = GameObject.FindGameObjectsWithTag("PatrolPoint");
         patrol_points = new Vector3[ptrl_objects.Length];
@@ -92,10 +94,11 @@ public class MonsterAI : MonoBehaviour
                     target = transform.position;
                     timer = 0.0f;
                 }
-                else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance)
+                else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance && !player_script.hidden)
                 {
                     state = MonsterState.HUNTING;
                     origin = transform.position;
+                    GetComponent<AudioSource>().PlayOneShot(monsterScream);
                 }
 
                 break;
@@ -105,8 +108,11 @@ public class MonsterAI : MonoBehaviour
                 if (Vector3.Distance(target, transform.position) < 1.0f)
                     target = getRoamingTarget();
 
-                else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance)
+                else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance && !player_script.hidden)
+                {
                     state = MonsterState.HUNTING;
+                    GetComponent<AudioSource>().PlayOneShot(monsterScream);
+                }
 
                 timer += Time.deltaTime;
 
@@ -132,7 +138,7 @@ public class MonsterAI : MonoBehaviour
 
                 target = player.transform.position;
 
-                if (Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance)
+                if (Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance ||  player_script.hidden)
                 {
                     state = MonsterState.ROAMING;
                     target = origin;

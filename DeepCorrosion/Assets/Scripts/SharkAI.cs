@@ -15,6 +15,7 @@ public class SharkAI : MonoBehaviour
     public float push_speed = 0.1f;
 
     private GameObject player;
+    private Player player_script;
     private SharkState state;
     private Vector3 target;
     private Vector3 origin;
@@ -27,6 +28,7 @@ public class SharkAI : MonoBehaviour
         target = origin = transform.position;
         state = SharkState.RESTING;
         player = GameObject.FindGameObjectWithTag("Player");
+        player_script = player.GetComponent<Player>();
         transform.GetChild(0).gameObject.SetActive(false);
         animator = GetComponent<Animator>();
     }
@@ -88,7 +90,7 @@ public class SharkAI : MonoBehaviour
                     if (Vector3.Distance(target, transform.position) < 1.0f)
                         target = getRoamingTarget();
 
-                    else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance)
+                    else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance && !player_script.hidden)
                         state = SharkState.HUNTING;
 
 
@@ -105,7 +107,7 @@ public class SharkAI : MonoBehaviour
 
                     target = player.transform.position;
 
-                    if (Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance)
+                    if (Vector3.Distance(target, transform.position) > hunting_distance || Vector3.Distance(transform.position, origin) > detection_distance || player_script.hidden)
                     {
                         state = SharkState.ROAMING;
                         target = transform.position;

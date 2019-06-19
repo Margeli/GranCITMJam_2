@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public float maxSpeed = 0.7f;
-    public float accelerationXZ = 0.05f;
-    public float accelerationY = 0.01f;
+    public float accelerationXZ = 0.3f;
     public float rotate_sensitivity = 0.6f;
     public float health = 100.0f;
     public int initialDepth = 1120;
+
+    public bool hidden = false;
+    public bool has_heat_shield = false;
 
     GameObject canvas;
     GameObject grabUI;
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour
 
     ElectricStick electricStickScript;
 
+    public AudioClip grabBarrel;
+    public AudioClip deliverBarrel;
 
     [Header("Useful Variables ( Do not touch them) ")]
     //public float speed = 0.0f;
@@ -86,11 +90,6 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal") * accelerationXZ * Time.deltaTime;
         movement.z = Input.GetAxis("Vertical") * accelerationXZ * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Space))
-            movement.y = accelerationY * Time.deltaTime;
-        else if (Input.GetKey(KeyCode.LeftControl))
-            movement.y = -accelerationY * Time.deltaTime;
-
         movement = transform.rotation * movement;
 
         if (grabbedBarrelBool)
@@ -115,12 +114,6 @@ public class Player : MonoBehaviour
 
         trans.Rotate(Vector3.up, deltaMouse.x * rotate_sensitivity);
         trans.Rotate(Vector3.right, -deltaMouse.y * rotate_sensitivity);
-        
-
-        if (trans.rotation.eulerAngles.x < 180.0f && trans.rotation.eulerAngles.x > 20.0f)
-            trans.rotation = Quaternion.Euler(20.0f, trans.rotation.eulerAngles.y, 0);
-        else if (trans.rotation.eulerAngles.x > 180.0f && trans.rotation.eulerAngles.x < 340.0f)
-            trans.rotation = Quaternion.Euler(340.0f, trans.rotation.eulerAngles.y, 0);
 
         transform.LookAt(transform.position + trans.forward);
 
@@ -148,6 +141,7 @@ public class Player : MonoBehaviour
                     grabbedBarrelBool = true;
                     grabUI.SetActive(false);
                     grabbedBarrelGO.SetActive(true);
+                    GetComponent<AudioSource>().PlayOneShot(grabBarrel);
                 }
             }
         }
@@ -163,6 +157,7 @@ public class Player : MonoBehaviour
                 totalBarrels--;
                 barrelsLeftUI.text = totalBarrels.ToString();
                 other.gameObject.GetComponent<BarrelDelivery>().SetBarrel();
+                GetComponent<AudioSource>().PlayOneShot(deliverBarrel);
             }
         }
     }
