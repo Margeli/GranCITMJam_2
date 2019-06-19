@@ -1173,15 +1173,5 @@ PrefabInstance:
       propertyPath: barrelsLeftUI
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2103323050877013603, guid: 3aff4f55df8377d4ea23f1035b4d4646,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9ee60bcfe2b876043a32021d852c3d49, type: 3}
-    - target: {fileID: 2103323050877013603, guid: 3aff4f55df8377d4ea23f1035b4d4646,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aff4f55df8377d4ea23f1035b4d4646, type: 3}
