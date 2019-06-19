@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public Vector3 speed = Vector3.zero;
     public bool grabbedBarrelBool = false;
     public bool attacking = false;
+    private Rigidbody rb;
 
 
 
@@ -45,11 +46,13 @@ public class Player : MonoBehaviour
         dropUI = canvas.transform.Find("DropBarrelText").gameObject;
         barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.GetComponent<Text>();
         barrelsLeftUI.text = totalBarrels.ToString();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        rb.velocity = Vector3.zero;
         //-------------------------------------------------------------GRABBING
         if (!grabbedBarrelBool)
         {
@@ -119,6 +122,7 @@ public class Player : MonoBehaviour
     {
         attacking = false;
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Barrels")// BARREL GRABBED
