@@ -101,6 +101,8 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(1))//Drop barrel
             {
                 GameObject inst = Instantiate(grabbedBarrelInstantiate, transform.parent, true);
+                inst.SetActive(true);
+                inst.GetComponent<Rigidbody>().useGravity = true;
                 inst.transform.position = transform.position + transform.forward * 1.25f;
                 grabbedBarrelGO.SetActive(false);
                 grabbedBarrelBool = false;
