@@ -17,6 +17,7 @@ public class Mine : MonoBehaviour
     private GameObject light_go;
     public float explosionRadius = 8.0f;
     private GameObject player;
+    public float explosionForce = 0.3f;
 
     
     // Start is called before the first frame update
@@ -72,11 +73,12 @@ public class Mine : MonoBehaviour
         firework.GetComponent<ParticleSystem>().Play();
 
         float radius = GetComponent<SphereCollider>().radius;
-        Vector3 dist = transform.position - player.transform.position;
+        Vector3 dist = player.transform.position - transform.position;
         if (dist.magnitude < explosionRadius)
         {
             float percent = (dist.magnitude) * 100 / (explosionRadius);
             player.GetComponent<Player>().health -= percent * MaxDmg;
+            player.GetComponent<Player>().speed = dist.normalized * explosionForce;
             
         }
 
