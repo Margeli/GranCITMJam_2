@@ -72,6 +72,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (health < 0)
+        {
+            health = 0;
+        }
         if (regenerate)
         {
             Debug.Log("Regenerate");
