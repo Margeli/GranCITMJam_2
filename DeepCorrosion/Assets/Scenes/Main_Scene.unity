@@ -1308,6 +1308,66 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 3766146114713522272, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766146114713522272, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766146114713522272, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -449.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766146114713522272, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -78.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766146114713522272, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 636.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343657440956364393, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -451.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343657440956364393, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -73.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3343657440956364393, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 635.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941207391175411141, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941207391175411141, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6941207391175411141, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 314183291371775625, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_Range
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c05c307447085148abfc56fd194b5a1, type: 3}
 --- !u!1 &326812133
