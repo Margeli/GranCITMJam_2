@@ -39,7 +39,8 @@ public class Player : MonoBehaviour
     public bool attacking = false;
     private Rigidbody rb;
 
-
+    private bool engineON = false;
+    private AudioSource engineAudio;
 
     // Start is called before the first frame update
     void Awake()
@@ -60,6 +61,8 @@ public class Player : MonoBehaviour
         healthUI = canvas.transform.Find("HealthText").gameObject.transform.GetChild(0).GetComponent<Text>();
         healthUI.text = health.ToString();
         rb = GetComponent<Rigidbody>();
+
+        engineAudio = transform.Find("Micro_Sub").gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -92,6 +95,17 @@ public class Player : MonoBehaviour
         Vector3 movement = Vector3.zero;
         movement.x = Input.GetAxis("Horizontal") * accelerationXZ * Time.deltaTime;
         movement.z = Input.GetAxis("Vertical") * accelerationXZ * Time.deltaTime;
+
+        if (engineON && Mathf.Equals(movement, Vector3.zero))
+        {
+            StartCoroutine(FadeOut(engineAudio, 0.5f));
+            engineON = false;
+        }
+        else if (!engineON && !Mathf.Equals(movement, Vector3.zero))
+        {
+            StartCoroutine(FadeIn(engineAudio, 0.5f));
+            engineON = true;
+        }
 
         movement = transform.rotation * movement;
 
@@ -171,6 +185,28 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Barrels")
         {
             grabUI.SetActive(false);
+        }
+    }
+
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.Stop();
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        audioSource.Play();
+        audioSource.volume = 0f;
+        while (audioSource.volume < 1)
+        {
+            audioSource.volume += Time.deltaTime / FadeTime;
+            yield return null;
         }
     }
 }
