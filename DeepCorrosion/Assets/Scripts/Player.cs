@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        if(grabbedBarrelBool && other.gameObject.tag == "Submarine")
+        if(grabbedBarrelBool && other.gameObject.tag == "DeliverSpot")
         {
             dropUI.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))//drop barrel in the subamrine
@@ -151,6 +151,7 @@ public class Player : MonoBehaviour
                 dropUI.SetActive(false);
                 totalBarrels--;
                 barrelsLeftUI.text = totalBarrels.ToString();
+                other.gameObject.GetComponent<BarrelDelivery>().SetBarrel();
             }
         }
     }
