@@ -8,6 +8,8 @@ TagManager:
   - Submarine
   - PatrolPoint
   - Mine
+  - Enemy
+  - DeliverSpot
   layers:
   - Default
   - TransparentFX
