@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
     private bool regenerate = false;
     public float regeneratePerSec = 10.0f;
 
-
+    private bool engineON = false;
+    private AudioSource engineAudio;
 
     // Start is called before the first frame update
     void Awake()
@@ -64,6 +65,8 @@ public class Player : MonoBehaviour
         healthUI.text = health.ToString();
         red = canvas.transform.Find("red").gameObject;
         rb = GetComponent<Rigidbody>();
+
+        engineAudio = transform.Find("Micro_Sub").gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -111,6 +114,17 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal") * accelerationXZ * Time.deltaTime;
         movement.z = Input.GetAxis("Vertical") * accelerationXZ * Time.deltaTime;
 
+        if (engineON && Mathf.Equals(movement, Vector3.zero))
+        {
+            StartCoroutine(FadeOut(engineAudio, 0.5f));
+            engineON = false;
+        }
+        else if (!engineON && !Mathf.Equals(movement, Vector3.zero))
+        {
+            StartCoroutine(FadeIn(engineAudio, 0.5f));
+            engineON = true;
+        }
+
         movement = transform.rotation * movement;
 
         if (grabbedBarrelBool)
@@ -156,7 +170,7 @@ public class Player : MonoBehaviour
             has_heat_shield = true;
         else if (other.gameObject.tag == "DeliverSpot")        
             regenerate = true;
-        
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -206,7 +220,28 @@ public class Player : MonoBehaviour
         {
             regenerate = false;
             red.SetActive(false);
+        }
+    }
 
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.Stop();
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        audioSource.Play();
+        audioSource.volume = 0f;
+        while (audioSource.volume < 1)
+        {
+            audioSource.volume += Time.deltaTime / FadeTime;
+            yield return null;
         }
         
     }
