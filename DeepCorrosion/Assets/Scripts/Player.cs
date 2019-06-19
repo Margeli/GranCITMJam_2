@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
     public Vector3 speed = Vector3.zero;
     public bool grabbedBarrelBool = false;
+    public bool attacking = false;
 
 
 
