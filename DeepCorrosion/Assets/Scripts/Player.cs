@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public float maxSpeed = 0.7f;
     public float accelerationXZ = 0.05f;
-    public float accelerationY = 0.1f;
+    public float accelerationY = 0.01f;
     public float rotate_sensitivity = 0.6f;
     public float health = 100.0f;
 
@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     BoxCollider grabCollider;
 
     ElectricStick electricStickScript;
-    bool attacking = false;
 
 
     [Header("Useful Variables ( Do not touch them) ")]
@@ -29,6 +28,8 @@ public class Player : MonoBehaviour
 
     public Vector3 speed = Vector3.zero;
     public bool grabbedBarrelBool = false;
+    public bool attacking = false;
+    private Rigidbody rb;
 
 
 
@@ -45,11 +46,13 @@ public class Player : MonoBehaviour
         dropUI = canvas.transform.Find("DropBarrelText").gameObject;
         barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.GetComponent<Text>();
         barrelsLeftUI.text = totalBarrels.ToString();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        rb.velocity = Vector3.zero;
         //-------------------------------------------------------------GRABBING
         if (!grabbedBarrelBool)
         {
@@ -83,6 +86,9 @@ public class Player : MonoBehaviour
 
         movement = transform.rotation * movement;
 
+        if (grabbedBarrelBool)
+            movement *= 0.3f;
+
         speed += movement;
 
         if (speed.magnitude > maxSpeed)
@@ -102,6 +108,12 @@ public class Player : MonoBehaviour
 
         trans.Rotate(Vector3.up, deltaMouse.x * rotate_sensitivity);
         trans.Rotate(Vector3.right, -deltaMouse.y * rotate_sensitivity);
+        
+
+        if (trans.rotation.eulerAngles.x < 180.0f && trans.rotation.eulerAngles.x > 20.0f)
+            trans.rotation = Quaternion.Euler(20.0f, trans.rotation.eulerAngles.y, 0);
+        else if (trans.rotation.eulerAngles.x > 180.0f && trans.rotation.eulerAngles.x < 340.0f)
+            trans.rotation = Quaternion.Euler(340.0f, trans.rotation.eulerAngles.y, 0);
 
         transform.LookAt(transform.position + trans.forward);
     }
@@ -110,6 +122,7 @@ public class Player : MonoBehaviour
     {
         attacking = false;
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Barrels")// BARREL GRABBED
