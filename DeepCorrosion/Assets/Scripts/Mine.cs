@@ -10,7 +10,7 @@ public class Mine : MonoBehaviour
 
 
     public float time_to_explode_after_detection = 3;
-    public float light_frequency = 0.5f;
+    public float light_frequency = 3.0f;
     public float MaxDmg = 100.0f;
 
     private float elapsed_time = 0.0f;
@@ -25,8 +25,8 @@ public class Mine : MonoBehaviour
     {
         light_go = GameObject.Find("Mine Lights");
         light_go.SetActive(false);
-       
-        
+
+        StartCoroutine(Countdown());
     }
 
     // Update is called once per frame
@@ -46,7 +46,9 @@ public class Mine : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (!triggered)
-            {                
+            {
+                light_frequency = 0.5f;
+                StopAllCoroutines();
                 StartCoroutine(Countdown());
             }
             triggered = true;
@@ -86,13 +88,5 @@ public class Mine : MonoBehaviour
         mesh_object.gameObject.SetActive(false);
         Destroy(firework, 5);
         Destroy(this.gameObject);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        
-    
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, explosionRadius);
     }
 }
