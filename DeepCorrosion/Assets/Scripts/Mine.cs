@@ -88,6 +88,6 @@ public class Mine : MonoBehaviour
         MeshRenderer mesh_object = GetComponentInChildren<MeshRenderer>();
         mesh_object.gameObject.SetActive(false);
         Destroy(firework, 5);
-        Destroy(this.gameObject);
+        Destroy(this.gameObject,1);
     }
 }
