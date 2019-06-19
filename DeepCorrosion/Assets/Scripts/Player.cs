@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();
         grabUI = canvas.transform.Find("GrabBarrelText").gameObject;
         dropUI = canvas.transform.Find("DropBarrelText").gameObject;
-        barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.GetComponent<Text>();
+        barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.transform.GetChild(0).GetComponent<Text>();
         barrelsLeftUI.text = totalBarrels.ToString();
         rb = GetComponent<Rigidbody>();
     }
