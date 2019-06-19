@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     public float rotate_sensitivity = 0.6f;
     public float health = 100.0f;
 
+    public bool hidden = false;
+    public bool has_heat_shield = false;
+
     GameObject canvas;
     GameObject grabUI;
     GameObject dropUI;
@@ -79,11 +82,6 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal") * accelerationXZ * Time.deltaTime;
         movement.z = Input.GetAxis("Vertical") * accelerationXZ * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Space))
-            movement.y = accelerationY * Time.deltaTime;
-        else if (Input.GetKey(KeyCode.LeftControl))
-            movement.y = -accelerationY * Time.deltaTime;
-
         movement = transform.rotation * movement;
 
         if (grabbedBarrelBool)
@@ -108,12 +106,6 @@ public class Player : MonoBehaviour
 
         trans.Rotate(Vector3.up, deltaMouse.x * rotate_sensitivity);
         trans.Rotate(Vector3.right, -deltaMouse.y * rotate_sensitivity);
-        
-
-        if (trans.rotation.eulerAngles.x < 180.0f && trans.rotation.eulerAngles.x > 20.0f)
-            trans.rotation = Quaternion.Euler(20.0f, trans.rotation.eulerAngles.y, 0);
-        else if (trans.rotation.eulerAngles.x > 180.0f && trans.rotation.eulerAngles.x < 340.0f)
-            trans.rotation = Quaternion.Euler(340.0f, trans.rotation.eulerAngles.y, 0);
 
         transform.LookAt(transform.position + trans.forward);
     }
