@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.health < 0)
+        if(player.health <= 0)
         {
             ftb.fade = true;
             if(ftb.finished)
