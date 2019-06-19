@@ -193,8 +193,8 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.7882353, g: 0.9533947, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 100
+  m_Intensity: 3
+  m_Range: 130
   m_SpotAngle: 45
   m_CookieSize: 10
   m_Shadows:
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 0.7
-  accelerationXZ: 0.05
+  accelerationXZ: 0.3
   rotate_sensitivity: 0.6
   health: 100
   initialDepth: 1120
@@ -470,8 +470,8 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.7882353, g: 0.9533947, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 100
+  m_Intensity: 3
+  m_Range: 130
   m_SpotAngle: 45
   m_CookieSize: 10
   m_Shadows:
@@ -5438,6 +5438,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 237538765181561054, guid: 5b358b7a96f463a44a3c341a37415705,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271155869942130699, guid: 5b358b7a96f463a44a3c341a37415705,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271155869942130699, guid: 5b358b7a96f463a44a3c341a37415705,
+        type: 3}
+      propertyPath: m_Radius
+      value: 10.67
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b358b7a96f463a44a3c341a37415705, type: 3}
