@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
     public bool grabbedBarrelBool = false;
     public bool attacking = false;
     private Rigidbody rb;
+    private bool regenerate = false;
+    public float regeneratePerSec = 10.0f;
 
     private bool engineON = false;
     private AudioSource engineAudio;
@@ -68,6 +70,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (regenerate)
+        {
+            Debug.Log("Regenerate");
+            if (health < 100)
+            {
+                health += regeneratePerSec * Time.fixedDeltaTime;
+            }
+            if (health > 100)
+            {
+                health = 1000;
+            }
+        }
+
         rb.velocity = Vector3.zero;
         //-------------------------------------------------------------GRABBING
         if (!grabbedBarrelBool)
@@ -144,6 +159,19 @@ public class Player : MonoBehaviour
         attacking = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Linterna")
+            GameObject.Find("ElectricStick").SetActive(true);
+        else if (other.gameObject.name == "HeatShield")
+            has_heat_shield = true;
+
+        if (other.gameObject.tag == "Barrels")
+        {
+            regenerate = false;
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Barrels")// BARREL GRABBED
@@ -166,6 +194,7 @@ public class Player : MonoBehaviour
         if(grabbedBarrelBool && other.gameObject.tag == "DeliverSpot")
         {
             dropUI.SetActive(true);
+            regenerate = true;
             if (Input.GetKeyDown(KeyCode.E))//drop barrel in the subamrine
             {
                 electricStickScript.gameObject.SetActive(true);
