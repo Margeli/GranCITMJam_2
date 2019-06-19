@@ -191,6 +191,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04f8d5a4bf44dd40a2789630232be42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &152084991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152084992}
+  - component: {fileID: 152084994}
+  - component: {fileID: 152084993}
+  m_Layer: 0
+  m_Name: HintEnemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &152084992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152084991}
+  m_LocalRotation: {x: -0, y: 0.54917717, z: -0, w: 0.83570594}
+  m_LocalPosition: {x: -393.4, y: -249.7, z: 510.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1560908412}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 66.621, z: 0}
+--- !u!114 &152084993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152084991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9342299d6d057458c1ab8acc26f696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  object_name: htp_Enemies
+--- !u!65 &152084994
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152084991}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 70, y: 100, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &167167321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -465,6 +523,21 @@ PrefabInstance:
       propertyPath: m_AspectRatio
       value: 0.68659425
       objectReference: {fileID: 0}
+    - target: {fileID: 7253979147934667341, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571730906967525627, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607981845047840324, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794cebbbcb5d19c47bf9c9c9492dbe42, type: 3}
 --- !u!224 &235685753 stripped
@@ -617,6 +690,64 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 413212097}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &456837596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456837597}
+  - component: {fileID: 456837599}
+  - component: {fileID: 456837598}
+  m_Layer: 0
+  m_Name: HintWASD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &456837597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456837596}
+  m_LocalRotation: {x: -0, y: -0.07183745, z: -0, w: 0.9974164}
+  m_LocalPosition: {x: -14, y: -57, z: -6.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1560908412}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -8.239, z: 0}
+--- !u!114 &456837598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456837596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9342299d6d057458c1ab8acc26f696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  object_name: htp_WASD
+--- !u!65 &456837599
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456837596}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 70, y: 100, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &754573427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1429,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2087865044}
+  - {fileID: 456837597}
+  - {fileID: 152084992}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1382,7 +1515,7 @@ GameObject:
   - component: {fileID: 2087865046}
   - component: {fileID: 2087865045}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: HintMines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1423,7 +1556,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087865043}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 70, y: 100, z: 1}
