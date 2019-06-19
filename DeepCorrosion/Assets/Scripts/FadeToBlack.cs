@@ -21,7 +21,7 @@ public class FadeToBlack : MonoBehaviour
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + 0.01f);
 
-            if (image.color.a == 255.0f)
+            if (image.color.a == 1.0f)
                 finished = true;
         }
     }

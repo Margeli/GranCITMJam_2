@@ -341,6 +341,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4999346937310787671, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217305867024225548, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804346110, guid: 2c05c307447085148abfc56fd194b5a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641356763238714563, guid: 2c05c307447085148abfc56fd194b5a1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c05c307447085148abfc56fd194b5a1, type: 3}
 --- !u!1001 &235685752
@@ -575,11 +594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1389094436, guid: a0cad0eff8f13ca40b57ea0ccbf80bc3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -128.8
+      value: -127.6
       objectReference: {fileID: 0}
     - target: {fileID: 1389094436, guid: a0cad0eff8f13ca40b57ea0ccbf80bc3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 379.1
+      value: 378.8
       objectReference: {fileID: 0}
     - target: {fileID: 1389094436, guid: a0cad0eff8f13ca40b57ea0ccbf80bc3, type: 3}
       propertyPath: m_LocalScale.x
@@ -799,6 +818,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586841311588232952, guid: ec529c139b9aafd4ab444dd396880c26,
+        type: 3}
+      propertyPath: hunting_distance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586841311588232952, guid: ec529c139b9aafd4ab444dd396880c26,
+        type: 3}
+      propertyPath: ignoring_distance
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586841311588232952, guid: ec529c139b9aafd4ab444dd396880c26,
+        type: 3}
+      propertyPath: detection_distance
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586841311588232952, guid: ec529c139b9aafd4ab444dd396880c26,
+        type: 3}
+      propertyPath: roaming_distance
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec529c139b9aafd4ab444dd396880c26, type: 3}

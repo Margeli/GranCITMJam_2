@@ -419,11 +419,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026200fecb47b8c4b861bd84d19ff73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avg_speed: 3
-  roaming_distance: 40
-  hunting_distance: 20
-  resting_distance: 60
-  detection_distance: 40
+  avg_speed: 15
+  roaming_distance: 80
+  hunting_distance: 100
+  resting_distance: 360
+  detection_distance: 240
   attack_timer: 4
   collision_detection_dist: 2
   push_speed: 0.1
