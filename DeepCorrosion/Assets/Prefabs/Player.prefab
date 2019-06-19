@@ -206,7 +206,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 0.7
   accelerationXZ: 0.05
-  accelerationY: 0.01
   rotate_sensitivity: 0.6
   health: 100
   hidden: 0
@@ -215,6 +214,7 @@ MonoBehaviour:
     type: 3}
   totalBarrels: 4
   grabBarrel: {fileID: 8300000, guid: 90fa1cd12ee19644ab13bc05435425f4, type: 3}
+  deliverBarrel: {fileID: 8300000, guid: f8f30e73fb64dd149afd6cc3819cb6f2, type: 3}
   speed: {x: 0, y: 0, z: 0}
   grabbedBarrelBool: 0
   attacking: 0

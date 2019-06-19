@@ -16,6 +16,7 @@ public class MonsterAI : MonoBehaviour
     public float collision_detection_dist = 4.0f;
     public float patrol_time = 60.0f;
     public float push_speed = 1.0f;
+    public AudioClip monsterScream;
 
     private GameObject player;
     private Player player_script;
@@ -97,6 +98,7 @@ public class MonsterAI : MonoBehaviour
                 {
                     state = MonsterState.HUNTING;
                     origin = transform.position;
+                    GetComponent<AudioSource>().PlayOneShot(monsterScream);
                 }
 
                 break;

@@ -25,8 +25,10 @@ public class Radar : MonoBehaviour
         }
     }
 
-    void RadarSwipe()
+    bool RadarSwipe()
     {
+        bool detected = false;
+
         Transform playertrans = player.transform;
         Collider[] hitColliders = Physics.OverlapSphere(playertrans.position, radar_radius, -1, QueryTriggerInteraction.Ignore);
         foreach (Collider col in hitColliders)
@@ -48,7 +50,14 @@ public class Radar : MonoBehaviour
                 GameObject radarDot = Instantiate(dot, gameObject.transform);
                 radarDot.GetComponent<RectTransform>().anchoredPosition += radarPos;
                 Destroy(radarDot, 3.0f);
+
+                if (!detected)
+                    GetComponent<AudioSource>().Play();
+
+                detected = true;
             }
         }
+
+        return detected;
     }
 }

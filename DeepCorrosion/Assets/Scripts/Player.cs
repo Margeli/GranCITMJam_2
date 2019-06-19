@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     ElectricStick electricStickScript;
 
     public AudioClip grabBarrel;
+    public AudioClip deliverBarrel;
 
     [Header("Useful Variables ( Do not touch them) ")]
     //public float speed = 0.0f;
@@ -145,6 +146,7 @@ public class Player : MonoBehaviour
                 totalBarrels--;
                 barrelsLeftUI.text = totalBarrels.ToString();
                 other.gameObject.GetComponent<BarrelDelivery>().SetBarrel();
+                GetComponent<AudioSource>().PlayOneShot(deliverBarrel);
             }
         }
     }
