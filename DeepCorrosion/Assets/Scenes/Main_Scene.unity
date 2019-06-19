@@ -506,7 +506,42 @@ PrefabInstance:
     - target: {fileID: 7946306295395258782, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
         type: 3}
       propertyPath: m_AspectRatio
-      value: 0.68659425
+      value: 1.3333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571730906967525627, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 597991936719155397, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010340503305633879, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607981845047840324, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253979147934667341, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536473760058982211, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119623295907635559, guid: 794cebbbcb5d19c47bf9c9c9492dbe42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 794cebbbcb5d19c47bf9c9c9492dbe42, type: 3}
