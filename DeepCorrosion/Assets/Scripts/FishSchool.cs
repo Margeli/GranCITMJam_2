@@ -15,12 +15,14 @@ public class FishSchool : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        direction = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-        direction = direction.normalized;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
+            direction = hit.normal.normalized;
     }
 
     void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
+        transform.LookAt(transform.position + Vector3.Lerp(transform.forward, direction, 0.05f));
     }
 }
