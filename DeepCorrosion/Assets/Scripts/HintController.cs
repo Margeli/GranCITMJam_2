@@ -24,6 +24,7 @@ public class HintController : MonoBehaviour
 
     private void Disable()
     {
-        gobject.SetActive(false);
+        Destroy(gobject);
+        Destroy(this.gameObject);
     }
 }

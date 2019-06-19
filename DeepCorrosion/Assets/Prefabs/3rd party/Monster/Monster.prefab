@@ -17469,7 +17469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c24d8994f185f41b35adc6822a9ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avg_speed: 5
+  avg_speed: 25
   roaming_distance: 30
   hunting_distance: 20
   ignoring_distance: 60
