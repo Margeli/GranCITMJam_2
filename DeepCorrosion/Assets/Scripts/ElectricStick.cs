@@ -45,6 +45,7 @@ public class ElectricStick : MonoBehaviour
         {
             if (!particle_system.gameObject.activeSelf)
             {
+                GetComponent<AudioSource>().Play();
                 particle_system.gameObject.SetActive(true);
                 yield return new WaitForSeconds(0.3f);
             }

@@ -174,6 +174,7 @@ public class SharkAI : MonoBehaviour
                     Player player_script = player.GetComponent<Player>();
                     player_script.health -= 20.0f;
                     player_script.speed = -hit.normal.normalized * push_speed;
+                    GetComponent<AudioSource>().Play();
                     can_attack = false;
                     animator.SetBool("attacking", true);
                     Invoke("ResetAttack", attack_timer);

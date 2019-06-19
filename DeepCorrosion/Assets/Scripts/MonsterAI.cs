@@ -109,7 +109,10 @@ public class MonsterAI : MonoBehaviour
                     target = getRoamingTarget();
 
                 else if (Vector3.Distance(player.transform.position, transform.position) < hunting_distance && !player_script.hidden)
+                {
                     state = MonsterState.HUNTING;
+                    GetComponent<AudioSource>().PlayOneShot(monsterScream);
+                }
 
                 timer += Time.deltaTime;
 

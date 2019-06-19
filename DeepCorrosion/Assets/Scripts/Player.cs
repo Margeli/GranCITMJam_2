@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float accelerationXZ = 0.3f;
     public float rotate_sensitivity = 0.6f;
     public float health = 100.0f;
+    public int initialDepth = 1120;
 
     public bool hidden = false;
     public bool has_heat_shield = false;
@@ -16,7 +17,10 @@ public class Player : MonoBehaviour
     GameObject canvas;
     GameObject grabUI;
     GameObject dropUI;
+    GameObject releaseUI;
+    Text depthUI;
     Text barrelsLeftUI;
+    Text healthUI;
     GameObject grabbedBarrelGO;
     public GameObject grabbedBarrelInstantiate;
     public int totalBarrels = 2;    
@@ -48,8 +52,13 @@ public class Player : MonoBehaviour
         electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();
         grabUI = canvas.transform.Find("GrabBarrelText").gameObject;
         dropUI = canvas.transform.Find("DropBarrelText").gameObject;
+        releaseUI = canvas.transform.Find("ReleaseBarrelText").gameObject;
         barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.transform.GetChild(0).GetComponent<Text>();
         barrelsLeftUI.text = totalBarrels.ToString();
+        depthUI = canvas.transform.Find("WaterDepthText").gameObject.transform.GetChild(0).GetComponent<Text>();
+        depthUI.text = initialDepth.ToString();
+        healthUI = canvas.transform.Find("HealthText").gameObject.transform.GetChild(0).GetComponent<Text>();
+        healthUI.text = health.ToString();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -74,6 +83,7 @@ public class Player : MonoBehaviour
                 inst.transform.position = transform.position + transform.forward * 1.25f;
                 grabbedBarrelGO.SetActive(false);
                 grabbedBarrelBool = false;
+                releaseUI.SetActive(false);
             }
         }
 
@@ -109,6 +119,10 @@ public class Player : MonoBehaviour
         trans.Rotate(Vector3.right, -deltaMouse.y * rotate_sensitivity);
 
         transform.LookAt(transform.position + trans.forward);
+
+        //------UI
+        depthUI.text = (initialDepth - (int)transform.position.y).ToString() ;
+        healthUI.text = health.ToString();
     }
 
     public void EndAttack()
@@ -128,6 +142,7 @@ public class Player : MonoBehaviour
                     electricStickScript.gameObject.SetActive(false);
                     Destroy(other.gameObject);
                     grabbedBarrelBool = true;
+                    releaseUI.SetActive(true);
                     grabUI.SetActive(false);
                     grabbedBarrelGO.SetActive(true);
                     GetComponent<AudioSource>().PlayOneShot(grabBarrel);
@@ -142,6 +157,7 @@ public class Player : MonoBehaviour
                 electricStickScript.gameObject.SetActive(true);
                 grabbedBarrelGO.SetActive(false);
                 grabbedBarrelBool = false;
+                releaseUI.SetActive(false);
                 dropUI.SetActive(false);
                 totalBarrels--;
                 barrelsLeftUI.text = totalBarrels.ToString();

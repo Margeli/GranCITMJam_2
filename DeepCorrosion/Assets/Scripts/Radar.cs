@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Radar : MonoBehaviour
 {
     public GameObject dot;
-    GameObject player;
+    public GameObject ping;
+    GameObject player = null;
     public float radar_radius = 100.0f;
     public float radar_frequency = 3.0f;
     private float timer = 0.0f;
@@ -20,6 +22,9 @@ public class Radar : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= radar_frequency)
         {
+            GameObject radarPing = Instantiate(ping, transform);
+            radarPing.GetComponent<Image>().CrossFadeAlpha(0.0f, 2.0f, false);
+            Destroy(radarPing, 4.0f);
             RadarSwipe();
             timer = 0.0f;
         }
