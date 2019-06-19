@@ -75,14 +75,14 @@ public class Player : MonoBehaviour
         if (regenerate)
         {
             Debug.Log("Regenerate");
-            if (health < 1000)
+            if (health < 100)
             {
                 red.SetActive(true);
                 health += regeneratePerSec * Time.fixedDeltaTime;
             }
-            if (health > 1000)
+            if (health > 100)
             {
-                health = 1000;
+                health = 100;
             }
         }
 
