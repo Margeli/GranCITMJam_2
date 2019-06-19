@@ -15,7 +15,7 @@ public class Mine : MonoBehaviour
 
     private float elapsed_time = 0.0f;
     private GameObject light_go;
-    public float explosionRadius = 100.0f;
+    public float explosionRadius = 8.0f;
     private GameObject player;
 
     
@@ -31,6 +31,7 @@ public class Mine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (triggered)
         {
             elapsed_time += Time.deltaTime;
@@ -44,12 +45,11 @@ public class Mine : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (!triggered)
-            {
-                player = other.gameObject;
+            {                
                 StartCoroutine(Countdown());
             }
             triggered = true;
-
+            player = other.gameObject;
         }
     }
 
@@ -71,12 +71,13 @@ public class Mine : MonoBehaviour
         GameObject firework = Instantiate(explosion, transform.position, Quaternion.identity);
         firework.GetComponent<ParticleSystem>().Play();
 
+        float radius = GetComponent<SphereCollider>().radius;
         Vector3 dist = transform.position - player.transform.position;
         if (dist.magnitude < explosionRadius)
         {
-            float percent = dist.magnitude * 100 / (explosionRadius - GetComponent<SphereCollider>().radius);
+            float percent = (dist.magnitude) * 100 / (explosionRadius);
             player.GetComponent<Player>().health -= percent * MaxDmg;
-            Debug.Log(percent);
+            
         }
 
         MeshRenderer mesh_object = GetComponentInChildren<MeshRenderer>();
@@ -85,5 +86,11 @@ public class Mine : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        
     
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, explosionRadius);
+    }
 }

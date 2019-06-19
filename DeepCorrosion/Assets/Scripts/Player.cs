@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float rotate_sensitivity = 0.6f;
     public float health = 100.0f;
 
-    public GameObject canvas;
+    GameObject canvas;
     GameObject grabUI;
     GameObject dropUI;
     Text barrelsLeftUI;
@@ -37,8 +37,10 @@ public class Player : MonoBehaviour
     {
         grabCollider = GetComponent<BoxCollider>();
         grabbedBarrelGO = transform.GetChild(0).gameObject;
-        
-        electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();        
+
+        canvas = GameObject.Find("Canvas");
+
+        electricStickScript = transform.GetChild(1).gameObject.GetComponent<ElectricStick>();
         grabUI = canvas.transform.Find("GrabBarrelText").gameObject;
         dropUI = canvas.transform.Find("DropBarrelText").gameObject;
         barrelsLeftUI = canvas.transform.Find("BarrelsLeftText").gameObject.GetComponent<Text>();
